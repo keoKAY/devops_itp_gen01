@@ -1,0 +1,32 @@
+services: 
+  spring-svc: 
+    image: spring-svc:v1.0.0
+    pull_policy: build 
+    build: 
+      context: ./product-api 
+      dockerfile: dev.Dockerfile
+    container_name: spring_cont 
+    ports: 
+      - 8080:8080
+  reactjs-svc: 
+    container_name: react_cont 
+    build: 
+      context: ./reactjs-image-demo 
+      dockerfile: dev.Dockerfile 
+    image: reactjs-svc:v1.0.0 
+    ports: 
+      - 3000:8080 
+  postgres-svc:
+    image: postgres:latest
+    container_name: postgres_cont 
+    environment: 
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-password}
+      POSTGRES_DB: ${POSTGRES_DB:-postgres}
+    volumes: 
+      - postgres-data:/var/lib/postgresql
+volumes: 
+  postgres-data:
+
+
+# docker compose config 

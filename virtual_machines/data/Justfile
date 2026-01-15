@@ -1,0 +1,44 @@
+
+username := "James Bond" 
+infra option : 
+    #!/bin/bash
+   
+    echo "User option is : {{option}} "
+    case {{ option }} in 
+        "up")
+        echo "Bringing the infrasture up 👍" 
+        echo "1. Write nginx config to target directory " 
+        echo "Configuration is already completed" 
+        echo "Username of the justfile : {{ username}} " 
+
+        echo "
+        server {
+        listen 80;
+        server_name example.com;
+
+        location / {
+            proxy_pass http://backend_server_ip:8080;
+            proxy_set_header Host \$host;
+            proxy_set_header X-Real-IP \$remote_addr;
+            proxy_set_header X-Forwarded-For \$proxy_add_x_forwarded_for;
+            proxy_set_header X-Forwarded-Proto \$scheme;
+            }
+            }
+
+         " > myconfig.conf
+        # adding another style of text block here 
+        ;; 
+        "down")
+        echo "bringing the infrastructure down 👎"
+        ;; 
+        *)
+        echo " ❌ Invalid option !! just up|down"
+        ;; 
+    esac 
+test: 
+    echo "Testing from justfile 🔥" 
+    echo "Current date is : $(date)" 
+
+greeting:
+    echo "Current user is : $(whoami)"
+    echo "Login at : $(date)" 
