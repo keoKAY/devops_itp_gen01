@@ -1,0 +1,70 @@
+- name: Create a Single GCP instance 
+  hosts: localhost 
+  become: true 
+  vars: 
+    ssh_public_path: "/home/kk/.ssh/id_rsa.pub"
+    machine_name: "first-demo"
+    google_project_id: "your-google-project-id"
+    service_account_path: "../credentials/serviceaccount.json"
+    adc_file: "/home/kk/Documents/devops_related/devops_itp_gen01/ansible-related/IaC/task1/credentials/application_default_credentials.json"
+  tasks: 
+    - name: Update apt cache 
+      apt: 
+        update_cache: yes  
+
+    - name: Slurping the public key and store in variables 
+      slurp: 
+        src : "{{ssh_public_path}}"
+      register: ssh_pub_key  
+    - name: Install pip 
+      apt: 
+        name: python3-pip 
+        state: present 
+    - name: Use pip to install request and google-auth 
+      pip: 
+        name: 
+          - requests 
+          - google-auth
+
+    - name: Create GCP instance
+      google.cloud.gcp_compute_instance:
+        name: "{{machine_name}}"
+        machine_type: "e2-medium"
+        zone: "us-central1-a"
+        project: "{{google_project_id}}"
+        auth_kind: application
+        #auth_kind: "serviceaccount"
+        #service_account_file: "{{ service_account_path }}"
+        state: present
+        metadata:
+          ssh-keys: "kk:{{ ssh_pub_key['content'] | b64decode }}"
+          startup-script: |
+            #!/bin/bash 
+            sudo apt-get install fish -y
+        disks:
+          - auto_delete: true
+            boot: true
+            initialize_params:
+              source_image: "projects/ubuntu-os-cloud/global/images/family/ubuntu-2204-lts"
+              disk_size_gb: 15
+              disk_type: "pd-standard"
+        network_interfaces:
+          - network:
+              selfLink: "projects/{{google_project_id}}/global/networks/default"
+            access_configs:
+              - name: External NAT
+                type: ONE_TO_ONE_NAT
+        tags:
+          items:
+            - http-server
+            - https-server
+      register: gcp_instance
+      when: true 
+      environment: 
+        GOOGLE_APPLICATION_CREDENTIALS: "{{ adc_file }}"
+        GOOGLE_EXTERNAL_ACCOUNT_ALLOW_EXECUTABLES: "1"
+    - name: Write gcp_instance into json file
+      copy:
+        content: "{{ gcp_instance }}"
+        dest: "./gcp_instance.json"
+      when: true 
