@@ -28,4 +28,12 @@ Way to authenticate yourself from playbooks
 
 ```bash 
 gcloud auth login 
-gcloud auth application-default login 
+gcloud auth application-default login
+```
+
+
+*** 
+- Create multiple instances 
+- generate inventory    
+    - templating language -> JinJa2 
+- provision all machines 
