@@ -57,3 +57,11 @@ git submodule add --force https://github.com/keoKAY/ansible-nfs-role-itp.git 4.a
 
 
 ```
+### Working with Ansible Galaxy 
+```bash 
+ansible-galaxy install git+https://github.com/keoKAY/ansible-nfs-role-itp.git,main 
+
+ansible-galaxy install git+https://github.com/keoKAY/ansible-nfs-role-itp.git,main --roles-path .
+
+
+```

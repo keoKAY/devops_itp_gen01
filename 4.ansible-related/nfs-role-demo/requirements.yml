@@ -1,0 +1,8 @@
+# Another Style #2 
+---
+roles: 
+  - name: nfs 
+    src: https://github.com/keoKAY/ansible-nfs-role-itp.git
+    version: main 
+
+# ansible-galaxy install -r requirements.yml --roles-path ./roles

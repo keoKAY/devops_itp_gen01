@@ -6,5 +6,5 @@
   roles: 
     #- common
     - nfs  
-
+    - ansible-nfs-role-itp
 
