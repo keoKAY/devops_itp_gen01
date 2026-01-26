@@ -52,7 +52,7 @@ Most real-world apt failures are temporary
 git rm -r 4.ansible-related/nfs-role-demo/roles/nfs
 git rm --cached -r 4.ansible-related/nfs-role-demo/roles/nfs  
 git restore nfs             
-git submodule add https://github.com/keoKAY/ansible-nfs-role-itp 4.ansible-related/nfs-role-demo/roles/nfs  
+git submodule add --force https://github.com/keoKAY/ansible-nfs-role-itp.git 4.ansible-related/nfs-role-demo/roles/nfs  
 
 
 
