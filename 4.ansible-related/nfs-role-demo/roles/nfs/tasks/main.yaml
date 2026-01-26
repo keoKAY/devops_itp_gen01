@@ -5,7 +5,7 @@
   register: nfs_server_result 
 - name: Setup NFS clients 
   include_tasks: setup-nfs-client.yaml 
-  when: false 
-  # when: 
-  #   - nfs_mode == "client"
-  #   - nfs_server_result is succeeded
+  #when: false 
+  when: 
+    - nfs_mode == "client"
+    - nfs_server_result is succeeded

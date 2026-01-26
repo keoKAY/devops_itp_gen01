@@ -1,7 +1,11 @@
 - name: Update apt cache 
   apt: 
     update_cache: yes 
-    upgrade: dist 
+    cache_valid_time: 3600
+    # upgrade: dist 
+- name: Upgrade packages
+  apt:
+    upgrade: dist
 - name: Install NFS Server 
   apt: 
     name: nfs-kernel-server
