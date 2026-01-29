@@ -40,7 +40,7 @@ Affinity
 3. configuring the kubenetes dashboards 
 - create service account 
 - create `clusterrolebinding` object to bind service account with the clusterrole
-- create the token to acccess the kubenretes dashboards
+- create the token to acccess the kubenetes dashboards
 
 ```bash
 kubectl create token
