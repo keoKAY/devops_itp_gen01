@@ -37,3 +37,5 @@ kubectl delete pod <pod-name>
     - Customized: 
         - Blue/Green 
         - Canary 
+
+*** 

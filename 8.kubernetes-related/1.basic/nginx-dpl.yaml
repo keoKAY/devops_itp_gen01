@@ -1,12 +1,15 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: nginx-apl 
+  name: nginx-dpl 
 spec:
   replicas: 4
   strategy: 
     # type: Recreate 
     type: RollingUpdate
+    # rollingUpdate: 
+      # maxSurge: 
+      # maxUnavailable: 
   selector:
     matchLabels:
       app: nginx-app 
