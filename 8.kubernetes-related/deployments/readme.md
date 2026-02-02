@@ -1,0 +1,1 @@
+## NOTE related to deployment strategies 
