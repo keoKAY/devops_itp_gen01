@@ -15,7 +15,8 @@ spec:
     # default label 
     # we can also customize the labels based on our needs 
       nodeSelector: 
-        kubernetes.io/hostname: node5
+        #kubernetes.io/hostname: node5
+        disktype: ssd 
       containers:
       - name: nginx-nodeselector-app
         image: nginx:latest

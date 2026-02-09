@@ -30,11 +30,12 @@ kubectl taint node node5 service-
 - Taint the worker5 to not accept tasks or running pod 
 
 
-- NOde selector : 
+- Node selector : 
 Select a specific nodes to run the wokrloads 
 ```bash 
-kubectl label nodes node-1 disktype=ssd
-kubectl label nodes node-2 disktype=hdd
+kubectl label nodes node1 disktype=ssd
+kubectl label nodes node5 disktype=ssd
+kubectl label nodes node4 disktype=hdd
 
 ```
 in your dployment 
