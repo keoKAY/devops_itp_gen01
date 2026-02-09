@@ -14,15 +14,13 @@ spec:
     spec:
       affinity:
         nodeAffinity:
-        # soft rule: preferred if it exists, but not really required
-          preferredDuringSchedulingIgnoredDuringExecution:
-            - weight: 100
-              preference:
-                matchExpressions:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
                   - key: disktype
-                    operator: NotIn
-                    values:
-                      - hdd
+                    operator: In
+                    values: 
+                      - nvme 
       containers:
       - name: nginx-nodeselector-app
         image: nginx:latest
