@@ -1,0 +1,18 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: spring-product-dpl
+spec:
+  selector:
+    matchLabels:
+      app: spring-product-app
+  template:
+    metadata:
+      labels:
+        app: spring-product-app
+    spec:
+      containers:
+      - name: spring-product-app
+        image: lyvanna544/spring-product-sample-dev10:v1.0.2
+        ports:
+        - containerPort: 8080
