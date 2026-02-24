@@ -38,7 +38,7 @@ affinity:
 nodeSelector: 
   kubernetes.io/hostname: node5
   #disktype: ssd   
-resources:
-  limits:
-    memory: "128Mi"
-    cpu: "500m"
+# resources:
+#   limits:
+#     memory: "128Mi"
+#     cpu: "500m"
