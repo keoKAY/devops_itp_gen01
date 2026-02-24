@@ -5,3 +5,14 @@ container:
   name: nginx-cont
   image: nginx:latest
   port: 80
+  env: 
+    - name: POSTGRES_USER
+      value: postgres_user  
+    - name: POSTGRES_DB
+      value: prod-db
+    - name: POSTGRES_PASSWORD
+      value: prod@password
+resources:
+  limits:
+    memory: "128Mi"
+    cpu: "500m"
