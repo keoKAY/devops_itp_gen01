@@ -28,7 +28,6 @@ Helm + Kustomize(yaml multiple layer approach )
 ```bash 
 # command to create helm chart
 helm create nginx-chart 
-
 helm template nginx-chart 
 # must be inside the location where you store the chart 
 helm install nginx-release nginx-chart
@@ -50,5 +49,9 @@ helm rollback nginx-release 3
 # to package your chart 
 helm package nginx-chart 
 # you will get the zipped .tgz which later on can be pushed to your registry (nexusoss)
-helm upgrade nginx-release nginx-chart --values location-to-value.yaml --install 
+helm upgrade nginx-release nginx-chart \
+    --values location-to-value.yaml --install 
 ```
+
+*** 
+## Customizing the helm chart 
