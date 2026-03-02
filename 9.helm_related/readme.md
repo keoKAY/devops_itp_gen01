@@ -55,3 +55,18 @@ helm upgrade nginx-release nginx-chart \
 
 *** 
 ## Customizing the helm chart 
+- We use gotemplating languages for creating dynamic helm chart 
+
+## Today agenda 
+1.  Deploy services with helm chart 
+- Ingress configuration 
+- Volume Configuration 
+- .... 
+
+2. GitOps with argocd 
+3. Helm with kustomize 
+
+```bash
+helm create sample-chart 
+```
+- `dockerconfigjson` secret used for authenticating when pulling privaste images , normally use as cli command(imperative approach)
